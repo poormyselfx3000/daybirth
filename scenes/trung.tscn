@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://bj4a0qn1ly15w"]
+
+[ext_resource type="Texture2D" uid="uid://c7gwe8srxdirt" path="res://textures/light.png" id="2_nfxp3"]
+[ext_resource type="Texture2D" uid="uid://mcwpmgm3d6nj" path="res://textures/wtfisthis.png" id="2_p7mi0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_guxvx"]
+size = Vector2(357, 325)
+
+[node name="trung" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="area" type="Area2D" parent="."]
+
+[node name="hitbox" type="CollisionShape2D" parent="area"]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_guxvx")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(2.9833329, 2.9816513)
+shadow_enabled = true
+shadow_filter = 2
+texture = ExtResource("2_nfxp3")
+
+[node name="Wtfisthis" type="Sprite2D" parent="."]
+texture = ExtResource("2_p7mi0")

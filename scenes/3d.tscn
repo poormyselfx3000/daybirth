@@ -1,0 +1,238 @@
+[gd_scene load_steps=25 format=3 uid="uid://dqpkash557xkw"]
+
+[ext_resource type="Texture2D" uid="uid://c226yio64xksn" path="res://textures/4 - Copy (3).png" id="1_7lbti"]
+[ext_resource type="Script" uid="uid://d0fmdcedua1p5" path="res://scenes/3d.gd" id="1_kyai6"]
+[ext_resource type="Texture2D" uid="uid://ca0vnj0sefhvm" path="res://textures/c.png" id="2_ix6ec"]
+[ext_resource type="PackedScene" uid="uid://dbmbdjysnmuxw" path="res://ahphu_3d.tscn" id="3_ix6ec"]
+[ext_resource type="AudioStream" uid="uid://qp1sng5xsfwb" path="res://sound/bossdie.mp3" id="5_jauas"]
+[ext_resource type="PackedScene" uid="uid://r07k86bjb5be" path="res://scenes/enemy2.tscn" id="5_kyai6"]
+[ext_resource type="Texture2D" uid="uid://chs4nqk4b7135" path="res://textures/f1 - Copy.png" id="7_43mfk"]
+[ext_resource type="Texture2D" uid="uid://bb8g0hy7rjmwo" path="res://textures/f1.png" id="8_1bo2p"]
+[ext_resource type="AudioStream" uid="uid://3r80vyur7myd" path="res://sound/Bình Hòa 202.mp3" id="9_1bo2p"]
+[ext_resource type="Texture2D" uid="uid://bu08kbobrqslk" path="res://textures/lua.png" id="10_hyepw"]
+[ext_resource type="AudioStream" uid="uid://cexntck4dl514" path="res://sound/2.mp3" id="11_31vc3"]
+[ext_resource type="AudioStream" uid="uid://4ykh4m33rfgg" path="res://sound/pew.mp3" id="12_v775f"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_hyepw"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_31vc3"]
+sky_material = SubResource("ProceduralSkyMaterial_hyepw")
+
+[sub_resource type="Environment" id="Environment_v775f"]
+background_mode = 2
+sky = SubResource("Sky_31vc3")
+ambient_light_sky_contribution = 0.15
+tonemap_mode = 2
+tonemap_exposure = 0.48
+tonemap_white = 5.45
+glow_enabled = true
+fog_enabled = true
+fog_light_color = Color(0.05250399, 0.061227083, 0.07518496, 1)
+fog_light_energy = 3.24
+fog_density = 0.1713
+volumetric_fog_enabled = true
+volumetric_fog_emission_energy = 12.01
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yhftu"]
+albedo_texture = ExtResource("1_7lbti")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyai6"]
+albedo_texture = ExtResource("2_ix6ec")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lbti"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_ix6ec"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bt:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-5.679, 1, 1.3334715)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("enemy:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-18.87873, 0.87148523, 3.0982852)]
+}
+
+[sub_resource type="Animation" id="Animation_7lbti"]
+resource_name = "intro"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bt:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.9333333, 2, 7.9666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-5.679, 1, 1.3334715), Vector3(-5.573742, 1, 1.3334715), Vector3(-21.215864, 1, 1.3334715)]
+}
+
+[sub_resource type="Animation" id="Animation_kyai6"]
+resource_name = "rush"
+length = 13.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("enemy:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.04, 7.4666667, 8.5633335),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(-18.87873, 0.87148523, 3.0982852), Vector3(7.4430947, 0.87148523, 3.0982852), Vector3(8.213272, 0.87148523, 3.0982852)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ix6ec"]
+_data = {
+&"RESET": SubResource("Animation_ix6ec"),
+&"intro": SubResource("Animation_7lbti"),
+&"rush": SubResource("Animation_kyai6")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kyai6"]
+size = Vector3(4.029175, 1, 7.272278)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jauas"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_43mfk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1bo2p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="3d" type="Node3D"]
+script = ExtResource("1_kyai6")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_v775f")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, -1, 0.5)
+use_collision = true
+size = Vector3(44, 1, 16)
+material = SubResource("StandardMaterial3D_yhftu")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 3, 1.5)
+use_collision = true
+size = Vector3(38, 1, 12)
+material = SubResource("StandardMaterial3D_yhftu")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.500999, 1, 0.5)
+use_collision = true
+size = Vector3(1, 5, 12)
+material = SubResource("StandardMaterial3D_kyai6")
+
+[node name="bt" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.679, 1, 1.3334715)
+use_collision = true
+size = Vector3(1, 5, 11)
+material = SubResource("StandardMaterial3D_kyai6")
+
+[node name="r" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.1000977, 7)
+use_collision = true
+size = Vector3(38, 4, 1)
+material = SubResource("StandardMaterial3D_kyai6")
+
+[node name="l" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 1.1000977, -1)
+use_collision = true
+size = Vector3(35, 4, 1)
+material = SubResource("StandardMaterial3D_kyai6")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.1000977, -2)
+use_collision = true
+size = Vector3(14, 4, 1)
+material = SubResource("StandardMaterial3D_7lbti")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ix6ec")
+}
+
+[node name="ahphu3d" parent="." instance=ExtResource("3_ix6ec")]
+transform = Transform3D(-0.99999547, 0, 0.0030020624, 0, 1, 0, -0.0030020624, 0, -0.99999547, 7.9962907, 1.120605, -0.45717645)
+
+[node name="Bossdie" type="AudioStreamPlayer" parent="ahphu3d"]
+stream = ExtResource("5_jauas")
+
+[node name="enemy" parent="." instance=ExtResource("5_kyai6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18.87873, 0.87148523, 3.0982852)
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.936832, 0.92034996, 3.1931562)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5145874, 0, -0.24441528)
+shape = SubResource("BoxShape3D_kyai6")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, -19.92089, 0.5003573, 3.1937053)
+sprite_frames = SubResource("SpriteFrames_jauas")
+autoplay = "default"
+frame_progress = 0.45920652
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="AnimatedSprite3D"]
+stream = ExtResource("9_1bo2p")
+volume_db = 1.554
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(-0.02621964, -0.8441129, 0.5355242, -0.041278902, 0.5361656, 0.8431029, -0.9988039, 2.702561e-09, -0.04890214, -3.728483, -0.2378385, 3.2430916)
+texture = ExtResource("10_hyepw")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Sprite3D"]
+transform = Transform3D(0.9999997, -2.3270053e-11, -2.9802322e-08, -9.308767e-09, 1, 1.7863177e-07, -1.1175871e-08, -2.9894657e-08, 1.0000001, -0.008921862, 0.115885496, 0.18222594)
+shadow_enabled = true
+
+[node name="tim2" type="Timer" parent="."]
+one_shot = true
+
+[node name="2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_31vc3")
+volume_db = -0.38
+pitch_scale = 0.41
+autoplay = true
+
+[node name="Pew" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_v775f")
+pitch_scale = 0.36
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="tim2" to="." method="_on_tim_2_timeout"]
+
+[editable path="ahphu3d"]
+[editable path="enemy"]

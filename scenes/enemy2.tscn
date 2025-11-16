@@ -1,0 +1,91 @@
+[gd_scene load_steps=13 format=3 uid="uid://r07k86bjb5be"]
+
+[ext_resource type="Texture2D" uid="uid://busasdwe4taly" path="res://textures/trollface - Copy - Copy - Copy - Copy.png" id="1_4e2ig"]
+[ext_resource type="Script" uid="uid://d0yy02x8bx0lv" path="res://scenes/enemy_2.gd" id="1_lsk8u"]
+[ext_resource type="Texture2D" uid="uid://ddnrket0meb1j" path="res://textures/trollface - Copy - Copy - Copy.png" id="2_lsk8u"]
+[ext_resource type="Texture2D" uid="uid://br0wwdoiosd50" path="res://textures/trollface - Copy - Copy.png" id="3_thqno"]
+[ext_resource type="Texture2D" uid="uid://p58fca3d1dsf" path="res://textures/trollface - Copy.png" id="4_l4k25"]
+[ext_resource type="Texture2D" uid="uid://7fmbw2hmoxud" path="res://textures/trollface.png" id="5_slk5t"]
+[ext_resource type="AudioStream" uid="uid://qp1sng5xsfwb" path="res://sound/bossdie.mp3" id="7_thqno"]
+[ext_resource type="AudioStream" uid="uid://djpvfn0yohkok" path="res://sound/gethit.mp3" id="8_l4k25"]
+[ext_resource type="AudioStream" uid="uid://cxk03x0xh60pa" path="res://sound/1.mp3" id="9_slk5t"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rmi40"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_4e2ig")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lsk8u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_thqno")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l4k25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_slk5t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_slk5t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_thqno")
+}],
+"loop": true,
+"name": &"default",
+"speed": 9.0
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cvjbx"]
+size = Vector3(1.105835, 1, 0.7314453)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_slk5t"]
+size = Vector3(7, 7, 1)
+
+[node name="enemy" type="CharacterBody3D" groups=["enemy"]]
+script = ExtResource("1_lsk8u")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(5.957519, 0, 0, 0, 5.5817733, 0, 0, 0, 1, 0, 0, 0)
+sprite_frames = SubResource("SpriteFrames_rmi40")
+autoplay = "default"
+frame_progress = 0.5055062
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.27834058)
+light_color = Color(0.5411765, 0.1254902, 0, 1)
+light_energy = 9.317
+light_volumetric_fog_energy = 5.289
+
+[node name="die" type="AudioStreamPlayer3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 2.0477858, 0, 0, 0)
+stream = ExtResource("7_thqno")
+volume_db = -26.877
+max_db = -9.047
+pitch_scale = 0.5
+
+[node name="gethit" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("8_l4k25")
+pitch_scale = 0.47
+
+[node name="rushing" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("9_slk5t")
+volume_db = 10.874
+pitch_scale = 1.02
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, -0.013549805, 0, -0.55096436)
+shape = SubResource("BoxShape3D_cvjbx")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_slk5t")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

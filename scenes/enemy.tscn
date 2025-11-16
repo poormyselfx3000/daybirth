@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjpoysf57f8un"]
+
+[ext_resource type="Texture2D" uid="uid://7fmbw2hmoxud" path="res://textures/trollface.png" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://cfx6ejd85wloq" path="res://scenes/enemy.gd" id="1_md0e3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_7p1mj"]
+bounce = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8tegq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_md0e3"]
+albedo_texture = ExtResource("1_7p1mj")
+metallic = 1.0
+metallic_texture = ExtResource("1_7p1mj")
+roughness_texture = ExtResource("1_7p1mj")
+
+[sub_resource type="SphereMesh" id="SphereMesh_8tegq"]
+material = SubResource("StandardMaterial3D_md0e3")
+rings = 3
+
+[node name="enemy" type="RigidBody3D"]
+mass = 0.007
+physics_material_override = SubResource("PhysicsMaterial_7p1mj")
+script = ExtResource("1_md0e3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." groups=["enemy"]]
+shape = SubResource("SphereShape3D_8tegq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_8tegq")

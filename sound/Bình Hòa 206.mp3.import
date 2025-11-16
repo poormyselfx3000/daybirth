@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d414lead3uxn"
+path="res://.godot/imported/Bình Hòa 206.mp3-72b4413dadf377d48e116a76ff43c716.mp3str"
+
+[deps]
+
+source_file="res://sound/Bình Hòa 206.mp3"
+dest_files=["res://.godot/imported/Bình Hòa 206.mp3-72b4413dadf377d48e116a76ff43c716.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

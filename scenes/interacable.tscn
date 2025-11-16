@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bnj4h6kdyv5q2"]
+
+[ext_resource type="Texture2D" uid="uid://bu08kbobrqslk" path="res://textures/lua.png" id="1_683c4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_guxvx"]
+size = Vector2(357, 325)
+
+[node name="lua" type="Node2D"]
+
+[node name="area" type="Area2D" parent="."]
+
+[node name="hitbox" type="CollisionShape2D" parent="area"]
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_guxvx")
+
+[node name="Lua" type="Sprite2D" parent="."]
+texture = ExtResource("1_683c4")

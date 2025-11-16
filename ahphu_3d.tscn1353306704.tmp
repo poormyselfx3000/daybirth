@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://dbmbdjysnmuxw"]
+
+[ext_resource type="Script" uid="uid://8jh0ugbn53fb" path="res://ahphu_3d.gd" id="1_pkkfh"]
+[ext_resource type="Texture2D" uid="uid://eduyau1auhoq" path="res://textures/pew1.png" id="2_n01lt"]
+[ext_resource type="Texture2D" uid="uid://cegycq6txet0q" path="res://textures/pew.png" id="3_8r1yp"]
+[ext_resource type="Texture2D" uid="uid://dlyl5nqsw1ddp" path="res://textures/bang.png" id="4_8r1yp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gncqd"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n01lt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_n01lt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8r1yp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_8r1yp")
+}],
+"loop": true,
+"name": &"shot",
+"speed": 5.0
+}]
+
+[node name="ahphu3d" type="CharacterBody3D"]
+script = ExtResource("1_pkkfh")
+
+[node name="hitbox" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_gncqd")
+
+[node name="head" type="Node3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4692855, 0)
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="head"]
+transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0.5110574, 0.30119675, -0.57824534)
+sprite_frames = SubResource("SpriteFrames_n01lt")
+autoplay = "default"
+frame_progress = 0.9586671
+
+[node name="RayCast3D" type="RayCast3D" parent="head"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-06, -1, 0, 100, -4.371139e-08, 0, 0.4692577, 0)
+debug_shape_thickness = 5

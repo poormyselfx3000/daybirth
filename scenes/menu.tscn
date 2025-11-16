@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://buegrb7yc7fme"]
+
+[ext_resource type="Script" uid="uid://nqwo3jrrlkep" path="res://scenes/script/menu.gd" id="1_mhnvy"]
+[ext_resource type="Texture2D" uid="uid://chs4nqk4b7135" path="res://textures/f1 - Copy.png" id="1_yqeox"]
+[ext_resource type="Texture2D" uid="uid://bb8g0hy7rjmwo" path="res://textures/f1.png" id="2_vjb58"]
+[ext_resource type="Texture2D" uid="uid://bx17nb04mpe3f" path="res://textures/4 - Copy (2) - Copy.png" id="4_4ytvr"]
+[ext_resource type="AudioStream" uid="uid://bowa2jhdssye8" path="res://sound/boom.mp3" id="5_4ytvr"]
+[ext_resource type="AudioStream" uid="uid://d414lead3uxn" path="res://sound/Bình Hòa 206.mp3" id="6_g3eks"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vjb58"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_yqeox")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_vjb58")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="menu" type="Node2D"]
+script = ExtResource("1_mhnvy")
+
+[node name="banh" type="AnimatedSprite2D" parent="."]
+position = Vector2(590, 321.00003)
+scale = Vector2(4.177083, 4.691514)
+sprite_frames = SubResource("SpriteFrames_vjb58")
+frame_progress = 0.45820647
+
+[node name="Button" type="Button" parent="."]
+offset_left = 331.0
+offset_top = 501.0
+offset_right = 845.0
+offset_bottom = 558.0
+text = "play"
+
+[node name="boom" type="Sprite2D" parent="."]
+position = Vector2(590.50006, 292.00003)
+scale = Vector2(7.859505, 6.326835)
+texture = ExtResource("4_4ytvr")
+
+[node name="boomsound" type="AudioStreamPlayer" parent="boom"]
+stream = ExtResource("5_4ytvr")
+
+[node name="dem" type="Timer" parent="."]
+
+[node name="BìnhHòa206" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_g3eks")
+autoplay = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="dem" to="." method="_on_dem_timeout"]

@@ -1,0 +1,113 @@
+[gd_scene load_steps=13 format=3 uid="uid://dqpkash557xkw"]
+
+[ext_resource type="Texture2D" uid="uid://c226yio64xksn" path="res://textures/4 - Copy (3).png" id="1_7lbti"]
+[ext_resource type="Script" uid="uid://d0fmdcedua1p5" path="res://scenes/3d.gd" id="1_kyai6"]
+[ext_resource type="Texture2D" uid="uid://ca0vnj0sefhvm" path="res://textures/c.png" id="2_ix6ec"]
+[ext_resource type="PackedScene" uid="uid://dbmbdjysnmuxw" path="res://ahphu_3d.tscn" id="3_ix6ec"]
+[ext_resource type="PackedScene" uid="uid://r07k86bjb5be" path="res://scenes/enemy2.tscn" id="5_kyai6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yhftu"]
+albedo_texture = ExtResource("1_7lbti")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kyai6"]
+albedo_texture = ExtResource("2_ix6ec")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7lbti"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_ix6ec"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bt:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-5.679, 1, 1.3334715)]
+}
+
+[sub_resource type="Animation" id="Animation_7lbti"]
+resource_name = "intro"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("bt:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(1.3766668, 1.4166667, 1.4666667, 7.9666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-3.0123541, 1, 1.3334715), Vector3(-2.8902247, 1, 1.3334715), Vector3(-2.9697306, 1, 1.3334715), Vector3(-21.215864, 1, 1.3334715)]
+}
+
+[sub_resource type="Animation" id="Animation_kyai6"]
+resource_name = "rush"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ix6ec"]
+_data = {
+&"RESET": SubResource("Animation_ix6ec"),
+&"intro": SubResource("Animation_7lbti"),
+&"rush": SubResource("Animation_kyai6")
+}
+
+[node name="3d" type="Node3D"]
+script = ExtResource("1_kyai6")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13, -1, 0.5)
+use_collision = true
+size = Vector3(44, 1, 16)
+material = SubResource("StandardMaterial3D_yhftu")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 3, 1.5)
+use_collision = true
+size = Vector3(38, 1, 12)
+material = SubResource("StandardMaterial3D_yhftu")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.500999, 1, 0.5)
+use_collision = true
+size = Vector3(1, 5, 12)
+material = SubResource("StandardMaterial3D_kyai6")
+
+[node name="bt" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.679, 1, 1.3334715)
+use_collision = true
+size = Vector3(1, 5, 11)
+material = SubResource("StandardMaterial3D_kyai6")
+
+[node name="r" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1.1000977, 7)
+use_collision = true
+size = Vector3(38, 4, 1)
+material = SubResource("StandardMaterial3D_kyai6")
+
+[node name="l" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.5, 1.1000977, -1)
+use_collision = true
+size = Vector3(35, 4, 1)
+material = SubResource("StandardMaterial3D_kyai6")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.1000977, -2)
+use_collision = true
+size = Vector3(14, 4, 1)
+material = SubResource("StandardMaterial3D_7lbti")
+
+[node name="anim" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ix6ec")
+}
+
+[node name="ahphu3d" parent="." instance=ExtResource("3_ix6ec")]
+transform = Transform3D(-0.99999547, 0, 0.0030020624, 0, 1, 0, -0.0030020624, 0, -0.99999547, 7.9962907, 1.120605, -0.45717645)
+
+[node name="enemy" parent="." instance=ExtResource("5_kyai6")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -18.87873, 0.87148523, 3.0982852)
